@@ -1,9 +1,8 @@
 import express, { Express, Request, Response } from 'express';
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 dotenv.config();
-let test = ""
-const app = express();
+const app: Express = express();
 const port = process.env.PORT;
 
 app.get('/', (req: Request, res: Response) => {
