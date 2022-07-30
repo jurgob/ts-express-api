@@ -35,10 +35,18 @@ the test pyramid define a quantity of test:
 
 what does this image mean?
 
-the position in the pyramid obviusly refer to the quantity of tests you should have 
+the position in the pyramid obviusly refer to the quantity of tests you should have. So, in theory a lot of unit, less functional, few e2e. 
+But how those names translate to an api tests? let me gives you first a formal definition, then a practical example:
+
+- unit test: this is a whitebox test (meaning it is aware of the implementation). those should run super fast and in parallel. no external dependencies should be required (no server spinned up, no extenral services, etc..)
+- integration test:  thos are greybox implementation (like you know some of the details) but the assertion are similar to the e2e test. ideally you don't want extenral dependencies on those. But there's a big investement on mock extenrnal dependencies.
+- e2e tests. those are blackbox test. (in some company they are written by a differnt team). if you are writing  website, those are the selenium tests. in a series of api calls. Typically You are runniong those against staging and production. In staging you may use real dependencies or complex mock services for them. 
+
+bonus track: `smokes test`. Smokes are like the e2e tests, (they can be a subset of those) that runs every n minuts in production. If they fail, some alert are gonna trigger eventually waking up someone. 
 
 
-achiving all those things can be realy expensive. Often is more expensive than what it should be, becouse you are using different tool in different context 
+
+Achiving all those things can be realy expensive. Often is more expensive than what it should be, becouse you are using different tool in different context 
 to solve the same problems. Here are some examples:
 - the test you write in your code
 
